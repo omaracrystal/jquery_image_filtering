@@ -26,4 +26,14 @@ $('.forest').on('click', function() {
   $('body').css("background-image", "url('img/forest.jpg')").css('background-size', 'cover');
 })
 
-$()
+$('.low').on('click', function(){
+  var pricesArray = []
+  for (var i = 0; i < $('article').length; i++) {
+    var price = ($($('article')[i]).attr('data-price'));
+    console.log(price);
+    pricesArray.push(parseInt(price));
+  }
+    pricesArray.sort();
+    console.log(pricesArray);
+
+});
