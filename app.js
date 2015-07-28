@@ -16,3 +16,14 @@ $(".light").on("click", function() {
   $("body").css("background-image", "url('img/tileable_wood_texture.png')");
 })
 
+$(".textures").append("<span class= 'forest'></span>")
+
+$('.textures').css('width', '133px');
+
+$('.forest').css('background', "url('img/forest.jpg')");
+
+$('.forest').on('click', function() {
+  $('body').css("background-image", "url('img/forest.jpg')").css('background-size', 'cover');
+})
+
+$()
