@@ -28,8 +28,9 @@ $('.forest').on('click', function() {
 
 
 
-//creating an array of prices and sorting them
-$('.low').on('click', function(){
+//creating an array of prices and sorting them in assending order
+$('.low').on('click', function(event){
+  event.preventDefault();
   var pricesArray = []
   for (var i = 0; i < $('article').length; i++) {
     var price = ($($('article')[i]).attr('data-price'));
@@ -52,3 +53,71 @@ $('.low').on('click', function(){
   };
 
 });
+
+
+//creating an array of prices and sorting them in desending order
+$('.high').on('click', function(event){
+  event.preventDefault();
+  var pricesArray = []
+  for (var i = 0; i < $('article').length; i++) {
+    var price = ($($('article')[i]).attr('data-price'));
+    console.log(price);
+    pricesArray.push(Number(price));
+  }
+    pricesArray.sort(function(a,b){
+      return b - a;
+    });
+    console.log(pricesArray);
+
+  $('.image-container').html = "";
+  for (var i = 0; i < pricesArray.length; i++) {
+    for (var j = 0; j < $('article').length; j++) {
+      var price = parseInt(($($('article')[j]).attr('data-price')));
+      if (pricesArray[i] === price) {
+        $('.image-container').append($('article')[j]);
+      }
+    }
+  };
+
+});
+
+
+
+//creating an array of prices and sorting them
+$('input').on('CheckboxStateChange', function(event){
+    event.preventDefault();
+    for (var i = 0; i < $('input').length; i++) {
+    $('input')[i];
+    console.log($('input')[i]);
+    };
+
+
+
+
+
+
+
+
+//   var pricesArray = []
+//   for (var i = 0; i < $('article').length; i++) {
+//     var price = ($($('article')[i]).attr('data-price'));
+//     console.log(price);
+//     pricesArray.push(Number(price));
+//   }
+//     pricesArray.sort(function(a,b){
+//       return b - a;
+//     });
+//     console.log(pricesArray);
+
+//   $('.image-container').html = "";
+//   for (var i = 0; i < pricesArray.length; i++) {
+//     for (var j = 0; j < $('article').length; j++) {
+//       var price = parseInt(($($('article')[j]).attr('data-price')));
+//       if (pricesArray[i] === price) {
+//         $('.image-container').append($('article')[j]);
+//       }
+//     }
+//   };
+
+});
+
