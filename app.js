@@ -26,14 +26,29 @@ $('.forest').on('click', function() {
   $('body').css("background-image", "url('img/forest.jpg')").css('background-size', 'cover');
 })
 
+
+
+//creating an array of prices and sorting them
 $('.low').on('click', function(){
   var pricesArray = []
   for (var i = 0; i < $('article').length; i++) {
     var price = ($($('article')[i]).attr('data-price'));
     console.log(price);
-    pricesArray.push(parseInt(price));
+    pricesArray.push(Number(price));
   }
-    pricesArray.sort();
+    pricesArray.sort(function(a,b){
+      return a - b;
+    });
     console.log(pricesArray);
+
+  $('.image-container').html = "";
+  for (var i = 0; i < pricesArray.length; i++) {
+    for (var j = 0; j < $('article').length; j++) {
+      var price = parseInt(($($('article')[j]).attr('data-price')));
+      if (pricesArray[i] === price) {
+        $('.image-container').append($('article')[j]);
+      }
+    }
+  };
 
 });
