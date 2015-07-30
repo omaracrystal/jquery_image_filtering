@@ -42,7 +42,7 @@ $('.low').on('click', function(event){
     });
     console.log(pricesArray);
 
-  $('.image-container').html = "";
+  // $('.image-container').html = "";
   for (var i = 0; i < pricesArray.length; i++) {
     for (var j = 0; j < $('article').length; j++) {
       var price = parseInt(($($('article')[j]).attr('data-price')));
@@ -69,7 +69,7 @@ $('.high').on('click', function(event){
     });
     console.log(pricesArray);
 
-  $('.image-container').html = "";
+  // $('.image-container').html = "";
   for (var i = 0; i < pricesArray.length; i++) {
     for (var j = 0; j < $('article').length; j++) {
       var price = parseInt(($($('article')[j]).attr('data-price')));
@@ -84,40 +84,89 @@ $('.high').on('click', function(event){
 
 
 //creating an array of prices and sorting them
-$('input').on('CheckboxStateChange', function(event){
-    event.preventDefault();
-    for (var i = 0; i < $('input').length; i++) {
-    $('input')[i];
-    console.log($('input')[i]);
+$('input').on('change', function(event){
+  event.preventDefault();
+  var checkedArray = [];
+  for (var i = 0; i < $('input').length; i++) {
+    var checked= $($('input')[i]).is(":checked")
+    // console.log(checked);
+    if (checked === true){
+      checkedArray.push(parseInt($('input')[i].value));
+    }
+  }
+  // console.log(checkedArray);
+// if(checkedArray.length) {
+
+var cabinArray = [];
+  for (var i = 0; i < checkedArray.length; i++) {
+    for (var j = 0; j < $('article').length; j++) {
+      var cabin = $($('article')[j]);
+      var price = parseInt(cabin.attr("data-price"));
+      // console.log(cabin);
+      // console.log(price);
+      if (checkedArray[i] === 50000) {
+        if (price >= 0 && price <= 50000) {
+          cabinArray.push(cabin);
+        }
+
+      } else if (checkedArray[i] === 100000) {
+        if (price > 50000 && price <= 100000) {
+          cabinArray.push(cabin);
+        }
+      } else if(checkedArray[i] === 200000) {
+        if (price > 100000 && price <= 200000) {
+          cabinArray.push(cabin);
+        }
+      } else if(checkedArray[i] === 300000) {
+        if (price > 200000 && price <= 300000) {
+          cabinArray.push(cabin);
+        }
+      } else if(checkedArray[i] === 500000) {
+        if (price > 300000 && price <= 500000) {
+          cabinArray.push(cabin);
+        }
+      } else if(checkedArray[i] === 1000000) {
+        if (price > 500000 && price <= 1000000) {
+          cabinArray.push(cabin);
+        }
+      }
+    };
+  }; console.log(cabinArray);
+    $('.image-container').children().hide();
+    for (var k = 0; k < cabinArray.length; k++) {
+          console.log(cabinArray[k]);
+          $('.image-container').append($(cabinArray[k]).show());
+
+        }
+
+    if (checkedArray.length === 0) {
+      $('.image-container').children().show();
     };
 
-
-
-
-
-
-
-
-//   var pricesArray = []
-//   for (var i = 0; i < $('article').length; i++) {
-//     var price = ($($('article')[i]).attr('data-price'));
-//     console.log(price);
-//     pricesArray.push(Number(price));
-//   }
-//     pricesArray.sort(function(a,b){
-//       return b - a;
-//     });
-//     console.log(pricesArray);
-
-//   $('.image-container').html = "";
-//   for (var i = 0; i < pricesArray.length; i++) {
-//     for (var j = 0; j < $('article').length; j++) {
-//       var price = parseInt(($($('article')[j]).attr('data-price')));
-//       if (pricesArray[i] === price) {
-//         $('.image-container').append($('article')[j]);
-//       }
-//     }
-//   };
-
+// }
 });
+
+  // var pricesArray = []
+  // for (var i = 0; i < $('article').length; i++) {
+  //   var price = parseInt(($($('article')[i]).attr('data-price')));
+  //   console.log(price);
+  //     if (checkedArray[j] >= priceArray[i])
+  //     for (var j = 0; j < checkedArray.length; j++) {
+  //       {
+  //         show articles in that range
+
+  //       }
+  //   };
+
+
+  //   if (price >= 0 && price <= 50000)
+
+  //   pricesArray.push(Number(price));
+  // }
+  //   pricesArray.sort(function(a,b){
+  //     return b - a;
+  //   });
+  //   console.log(pricesArray);
+
+
 
